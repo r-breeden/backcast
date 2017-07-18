@@ -4,15 +4,20 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
     this.videos = new Videos(window.exampleVideoData);
-    //member Jared's sass and the gd backbone hAlp
-    this.videoListView = new VideoListView({collection: this.videos});
 
     this.render();
   },
 
-  render: function(obj) {
-    console.log(obj);
-    this.$el.html(this.template(obj));
+  render: function() {
+    //this.$el.html(this.template());
+    
+    //why render at the end? 
+    this.videoListView = new VideoListView({
+      el: this.$('.list'),
+      collection: this.videos,
+    }).render();
+    
+    this.$el.html(this.template());
     return this;
   },
 
