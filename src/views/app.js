@@ -4,13 +4,12 @@ var AppView = Backbone.View.extend({
 
   initialize: function() {
     this.videos = new Videos(window.exampleVideoData);
-    
-     
+
+    this.activeModel = new Backbone.Model();
+    this.activeModel.set(undefined);
 
     this.render();
-  },
-
-  
+  }, 
 
   render: function() {
     this.$el.html(this.template());
@@ -19,6 +18,7 @@ var AppView = Backbone.View.extend({
     new VideoListView({
       el: this.$('.list'),
       collection: this.videos,
+      activeModel: this.activeModel,
     }).render();
     
     new SearchView({
@@ -31,6 +31,7 @@ var AppView = Backbone.View.extend({
       //does one have to also pass a collection? prollllyyy 
       model: this.videos.at(0),
       collection: this.videos,
+      activeModel: this.activeModel,
       
     }).render();
   },
