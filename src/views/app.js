@@ -9,16 +9,15 @@ var AppView = Backbone.View.extend({
   },
 
   render: function() {
-    //this.$el.html(this.template());
+    this.$el.html(this.template());
     
     //why render at the end? 
-    this.videoListView = new VideoListView({
+    new VideoListView({
       el: this.$('.list'),
       collection: this.videos,
     }).render();
     
-    this.$el.html(this.template());
-    return this;
+    
   },
 
   template: templateURL('src/templates/app.html')
